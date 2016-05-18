@@ -20,7 +20,8 @@ var ProgrammeComponent = (function () {
     ProgrammeComponent = __decorate([
         core_1.Component({
             selector: 'programme',
-            template: "\n        <div *ngIf=\"programme\">\n            <h2>{{programme.name}}</h2>\n            <h4>{{programme.startTime}} - {{programme.endTime}}</h4>\n        </div>\n    "
+            template: "\n        <div class=\"programme\" *ngIf=\"programme\">\n            <h2 class=\"programme__title\">{{programme.name}}</h2>\n            <h4 class=\"programme__timings\">{{programme.startTime}} - {{programme.endTime}} ({{programme.getLength()}})</h4>\n        </div>\n    ",
+            styles: ["\n        .programme {\n\n        }\n\n            .programme__title {\n\n            }\n\n            .programme__timings {\n\n            }\n    "],
         }), 
         __metadata('design:paramtypes', [])
     ], ProgrammeComponent);

@@ -5,11 +5,24 @@ import { Programme } from './programme';
 @Component({
     selector: 'programme',
     template: `
-        <div *ngIf="programme">
-            <h2>{{programme.name}}</h2>
-            <h4>{{programme.startTime}} - {{programme.endTime}}</h4>
+        <div class="programme" *ngIf="programme">
+            <h2 class="programme__title">{{programme.name}}</h2>
+            <h4 class="programme__timings">{{programme.startTime}} - {{programme.endTime}} ({{programme.getLength()}})</h4>
         </div>
-    `
+    `,
+    styles: [`
+        .programme {
+
+        }
+
+            .programme__title {
+
+            }
+
+            .programme__timings {
+
+            }
+    `],
 })
 export class ProgrammeComponent {
     @Input()
