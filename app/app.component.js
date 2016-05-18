@@ -10,28 +10,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var channel_component_1 = require('./channel.component');
+var time_scroller_component_1 = require('./time-scroller.component');
+var programme_1 = require('./programme');
 var AppComponent = (function () {
     function AppComponent() {
         this.allChannels = CHANNEL_DATA;
+        this.currentTime = CURRENT_TIME;
+        this.styleExp = '';
     }
+    AppComponent.prototype.testChange = function (currentTime) {
+        this.styleExp = 'translateX(' + currentTime + 'px)';
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n        <div *ngFor=\"let channel of allChannels\">\n            <channel [channel]=\"channel\"></channel>\n        </div>\n    ",
-            directives: [channel_component_1.ChannelComponent]
+            template: "\n        <time-scroller [currentTime]=\"currentTime\" (timeChange)=\"testChange($event)\"></time-scroller>\n        <h4>{{currentTime}}</h4>\n        <div [ngStyle]=\"{'transform': styleExp}\" *ngFor=\"let channel of allChannels\">\n            <channel [channel]=\"channel\"></channel>\n        </div>\n    ",
+            directives: [channel_component_1.ChannelComponent, time_scroller_component_1.TimeScrollerComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
+var CURRENT_TIME = 0;
 var CHANNEL_ONE_PROGRAMMES = [
-    { name: 'Programm 1', startTime: 1000, endTime: 1500 },
-    { name: 'P2', startTime: 1500, endTime: 1600 }
+    new programme_1.Programme('Programme1', 1000, 1500),
+    new programme_1.Programme('P2', 1500, 1600)
 ];
 var CHANNEL_TWO_PROGRAMMES = [
-    { name: 'C2 Programm 1', startTime: 1000, endTime: 1500 },
-    { name: 'C2P2', startTime: 1500, endTime: 1600 }
+    new programme_1.Programme('C2 Program 1', 1000, 1500),
+    new programme_1.Programme('CP2', 1500, 1600)
 ];
 var CHANNEL_DATA = [
     { name: 'Test channel one', programmes: CHANNEL_ONE_PROGRAMMES },
